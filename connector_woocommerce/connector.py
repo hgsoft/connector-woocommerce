@@ -19,12 +19,10 @@
 #
 #
 
-from openerp import models, fields
-from openerp.addons.connector.connector import (ConnectorEnvironment,
-                                                install_in_connector)
-from openerp.addons.connector.checkpoint import checkpoint
+from odoo import models, fields
+from odoo.addons.connector.connector import ConnectorEnvironment
+from odoo.addons.connector.checkpoint import checkpoint
 
-install_in_connector()
 
 
 def get_environment(session, model_name, backend_id):
@@ -44,7 +42,7 @@ class WooBinding(models.AbstractModel):
 
     """ Abstract Model for the Bindigs.
 
-    All the models used as bindings between WooCommerce and OpenERP
+    All the models used as bindings between WooCommerce and Odoo
     (``woo.res.partner``, ``woo.product.product``, ...) should
     ``_inherit`` it.
     """

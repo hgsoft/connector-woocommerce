@@ -21,13 +21,13 @@
 
 import logging
 import xmlrpclib
-from openerp import models, fields
-from openerp.addons.connector.queue.job import job
-from openerp.addons.connector.exception import MappingError
-from openerp.addons.connector.unit.mapper import (mapping,
+from odoo import api, models, fields
+from odoo.addons.queue_job.job import job
+from odoo.addons.connector.exception import MappingError
+from odoo.addons.connector.unit.mapper import (mapping,
                                                   ImportMapper
                                                   )
-from openerp.addons.connector.exception import IDMissingInBackend
+from odoo.addons.connector.exception import IDMissingInBackend
 from ..unit.backend_adapter import (GenericAdapter)
 from ..unit.import_synchronizer import (DelayedBatchImporter, WooImporter)
 from ..connector import get_environment

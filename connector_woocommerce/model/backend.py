@@ -19,10 +19,9 @@
 #
 #
 
-from openerp import models, api, fields, _
+from odoo import models, api, fields, _
 from woocommerce import API
-from openerp.exceptions import Warning
-from openerp.addons.connector.session import ConnectorSession
+from odoo.exceptions import Warning
 from datetime import datetime
 from .product_category import category_import_batch
 from .product import product_import_batch
@@ -113,52 +112,49 @@ class wc_backend(models.Model):
 
     @api.multi
     def import_category(self):
-        session = ConnectorSession(self.env.cr, self.env.uid,
-                                   context=self.env.context)
+        
         import_start_time = datetime.now()
         backend_id = self.id
         from_date = None
-        category_import_batch.delay(
-            session, 'woo.product.category', backend_id,
+        #env['res.users'].with_delay().method()
+        category_import_batch(
+            self.env, 'woo.product.category', backend_id,
             {'from_date': from_date,
-             'to_date': import_start_time}, priority=1)
+             'to_date': import_start_time})
         return True
 
     @api.multi
     def import_product(self):
-        session = ConnectorSession(self.env.cr, self.env.uid,
-                                   context=self.env.context)
+
         import_start_time = datetime.now()
         backend_id = self.id
         from_date = None
         product_import_batch.delay(
-            session, 'woo.product.product', backend_id,
+            self.env, 'woo.product.product', backend_id,
             {'from_date': from_date,
              'to_date': import_start_time}, priority=2)
         return True
 
     @api.multi
     def import_customer(self):
-        session = ConnectorSession(self.env.cr, self.env.uid,
-                                   context=self.env.context)
+        
         import_start_time = datetime.now()
         backend_id = self.id
         from_date = None
         customer_import_batch.delay(
-            session, 'woo.res.partner', backend_id,
+            self.env, 'woo.res.partner', backend_id,
             {'from_date': from_date,
              'to_date': import_start_time}, priority=3)
         return True
 
     @api.multi
     def import_order(self):
-        session = ConnectorSession(self.env.cr, self.env.uid,
-                                   context=self.env.context)
+        
         import_start_time = datetime.now()
         backend_id = self.id
         from_date = None
         sale_order_import_batch.delay(
-            session, 'woo.sale.order', backend_id,
+            self.env, 'woo.sale.order', backend_id,
             {'from_date': from_date,
              'to_date': import_start_time}, priority=4)
         return True

@@ -21,14 +21,19 @@
 
 {
     'name': 'WooCommerce Connector',
-    'version': '8.0.1.0.1',
-    'category': 'customized',
+    'version': '10.0.1.0.1',
+    'category': 'Connectors',
     'description': """WooCommerce Connector.""",
+    'summary': 'WooCommerce Connector',    
     'author': 'Tech Receptives',
-    'maintainer': 'OpenERP SA',
-    'website': 'http://www.openerp.com',
-    'depends': ['base', 'connector', 'connector_ecommerce'],
-    'installable': False,
+    'website': 'http://www.hgsoft.com.br',
+    'license': 'AGPL-3',
+    'contributors': [
+        'Alexsandro Haag <alex@hgsoft.com.br>',
+        'Matheus Adriano Haag <matheus@hgsoft.com.br>'
+    ],    
+    'depends': ['base', 'connector', 'connector_ecommerce', 'queue_job'],
+    'installable': True,
     'auto_install': False,
     'data': [
         "security/ir.model.access.csv",

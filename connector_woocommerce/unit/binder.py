@@ -20,7 +20,7 @@
 #
 
 import openerp
-from openerp.addons.connector.connector import Binder
+from odoo.addons.connector.connector import Binder
 from ..backend import woo
 
 

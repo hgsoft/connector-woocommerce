@@ -20,14 +20,15 @@
 #
 
 import functools
-from openerp import exceptions, _
-from openerp.addons.connector import related_action
+from odoo import exceptions, _
+#from odoo.addons.connector.connector import QueueJob
 from .connector import get_environment
 from .unit.backend_adapter import GenericAdapter
 from .unit.binder import WooBinder
 
-unwrap_binding = functools.partial(related_action.unwrap_binding,
-                                   binder_class=WooBinder)
+#unwrap_binding = functools.partial(related_action_unwrap_binding,
+#                                   binder_class=WooBinder)
+
 
 
 def link(session, job, backend_id_pos=2, woo_id_pos=3):

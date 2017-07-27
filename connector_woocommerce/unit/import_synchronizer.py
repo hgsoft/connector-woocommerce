@@ -20,10 +20,10 @@
 #
 
 import logging
-from openerp import fields, _
-from openerp.addons.connector.queue.job import job, related_action
-from openerp.addons.connector.unit.synchronizer import Importer
-from openerp.addons.connector.exception import IDMissingInBackend
+from odoo import api, fields, _
+from odoo.addons.queue_job.job import job, related_action
+from odoo.addons.connector.unit.synchronizer import Importer
+from odoo.addons.connector.exception import IDMissingInBackend
 from ..connector import get_environment
 from ..related_action import link
 from datetime import datetime
@@ -274,7 +274,7 @@ class DelayedBatchImporter(BatchImporter):
 
 DelayedBatchImport = DelayedBatchImporter
 
-
+@api.multi
 @job(default_channel='root.woo')
 @related_action(action=link)
 def import_record(session, model_name, backend_id, woo_id, force=False):

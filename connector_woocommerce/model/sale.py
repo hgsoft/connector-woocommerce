@@ -21,12 +21,12 @@
 
 import logging
 import xmlrpclib
-from openerp import models, fields, api
-from openerp.addons.connector.queue.job import job
-from openerp.addons.connector.unit.mapper import (mapping,
+from odoo import models, fields, api
+from odoo.addons.queue_job.job import job
+from odoo.addons.connector.unit.mapper import (mapping,
                                                   ImportMapper
                                                   )
-from openerp.addons.connector.exception import IDMissingInBackend
+from odoo.addons.connector.exception import IDMissingInBackend
 from ..unit.backend_adapter import (GenericAdapter)
 from ..unit.import_synchronizer import (DelayedBatchImporter, WooImporter)
 from ..connector import get_environment
@@ -86,7 +86,7 @@ class WooSaleOrderLine(models.Model):
                                    string='Woo Sale Order',
                                    required=True,
                                    ondelete='cascade',
-                                   select=True)
+                                   index=True)
 
     openerp_id = fields.Many2one(comodel_name='sale.order.line',
                                  string='Sale Order Line',
